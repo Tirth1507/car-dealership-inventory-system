@@ -13,6 +13,7 @@ function EditCar() {
     const [formData, setFormData] = useState({
         make: "",
         model: "",
+        category: "",
         year: "",
         price: "",
         color: "",
@@ -40,16 +41,17 @@ function EditCar() {
             const car = await getCarById(id);
 
             setFormData({
-                make: car.make,
-                model: car.model,
-                year: car.year,
-                price: car.price,
-                color: car.color,
-                fuel_type: car.fuel_type,
-                transmission: car.transmission,
-                mileage: car.mileage,
-                quantity: car.quantity,
-            });
+            make: car.make,
+            model: car.model,
+            category: car.category,
+            year: car.year,
+            price: car.price,
+            color: car.color,
+            fuel_type: car.fuel_type,
+            transmission: car.transmission,
+            mileage: car.mileage,
+            quantity: car.quantity,
+        });
 
         } catch (error) {
 
