@@ -8,25 +8,32 @@ import AddCar from "../pages/AddCar";
 import EditCar from "../pages/EditCar";
 import NotFound from "../pages/NotFound";
 
+import MainLayout from "../layouts/MainLayout";
+
 function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
 
+                {/* Public Routes */}
                 <Route path="/" element={<Login />} />
-
                 <Route path="/login" element={<Login />} />
-
                 <Route path="/register" element={<Register />} />
 
-                <Route path="/dashboard" element={<Dashboard />} />
+                {/* Protected Layout */}
+                <Route element={<MainLayout />}>
 
-                <Route path="/cars" element={<Cars />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
 
-                <Route path="/cars/add" element={<AddCar />} />
+                    <Route path="/cars" element={<Cars />} />
 
-                <Route path="/cars/edit/:id" element={<EditCar />} />
+                    <Route path="/cars/add" element={<AddCar />} />
 
+                    <Route path="/cars/edit/:id" element={<EditCar />} />
+
+                </Route>
+
+                {/* 404 */}
                 <Route path="*" element={<NotFound />} />
 
             </Routes>
