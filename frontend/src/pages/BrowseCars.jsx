@@ -17,6 +17,9 @@ function BrowseCars() {
     const [categoryFilter, setCategoryFilter] = useState("All");
     const [transmissionFilter, setTransmissionFilter] = useState("All");
 
+    const [minPrice, setMinPrice] = useState("");
+    const [maxPrice, setMaxPrice] = useState("");
+
     useEffect(() => {
     fetchCars();
 }, []);
@@ -70,12 +73,22 @@ const handlePurchase = async (carId) => {
         const matchesTransmission =
             transmissionFilter === "All" ||
             car.transmission === transmissionFilter;
+        
+        const matchesMinPrice =
+            minPrice === "" ||
+            car.price >= Number(minPrice);
+
+        const matchesMaxPrice =
+            maxPrice === "" ||
+            car.price <= Number(maxPrice);
 
         return (
             matchesSearch &&
             matchesCategory &&
             matchesFuel &&
-            matchesTransmission
+            matchesTransmission &&
+            matchesMinPrice &&
+            matchesMaxPrice
         );
     });
 
@@ -143,6 +156,22 @@ const handlePurchase = async (carId) => {
                     <option value="Automatic">Automatic</option>
                     <option value="Manual">Manual</option>
                 </select>
+
+                <input
+                    type="number"
+                    className="filter-search"
+                    placeholder="Min Price"
+                    value={minPrice}
+                    onChange={(e) => setMinPrice(e.target.value)}
+                />
+
+                <input
+                    type="number"
+                    className="filter-search"
+                    placeholder="Max Price"
+                    value={maxPrice}
+                    onChange={(e) => setMaxPrice(e.target.value)}
+                />
             </div>
 
             {filteredCars.length === 0 ? (
