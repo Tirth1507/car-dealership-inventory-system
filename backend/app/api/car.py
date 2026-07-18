@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from database import get_db
+from app.dependencies.auth import get_current_admin
 from app.schemas.car import (
     CarCreate,
     CarUpdate,
@@ -22,7 +23,8 @@ router = APIRouter(
 )
 def create_car(
     car_data: CarCreate,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_admin)
 ):
     try:
         return CarService.create_car(db, car_data)
@@ -67,7 +69,8 @@ def get_car_by_id(
 def update_car(
     car_id: int,
     car_data: CarUpdate,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_admin)
 ):
     try:
         return CarService.update_car(
@@ -85,7 +88,8 @@ def update_car(
 @router.delete("/{car_id}")
 def delete_car(
     car_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_admin)
 ):
     try:
         return CarService.delete_car(

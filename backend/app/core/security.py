@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from typing import Optional
 
-from jose import jwt
+from jose import jwt, JWTError # i) Used to encode and decode JWTs, ii) Raised when the token is invalid, expired, or tampered with
 from passlib.context import CryptContext
 
 from dotenv import load_dotenv
@@ -69,3 +69,20 @@ def create_access_token(
     )
 
     return encoded_jwt
+
+def verify_token(token: str):
+    """
+    Verify JWT token and return the decoded payload.
+    Returns None if the token is invalid or expired.
+    """
+
+    try:
+        payload = jwt.decode(
+            token,
+            SECRET_KEY,
+            algorithms=[ALGORITHM]
+        )
+        return payload
+
+    except JWTError:
+        return None

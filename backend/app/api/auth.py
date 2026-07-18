@@ -31,17 +31,3 @@ def login(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=str(e)
         )
-
-
-@router.post("/login")
-def login(
-    login_data: UserLogin,
-    db: Session = Depends(get_db)
-):
-    try:
-        return AuthService.login_user(db, login_data)
-    except ValueError as e:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail=str(e)
-        )
