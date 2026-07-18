@@ -55,3 +55,13 @@ export const purchaseCar = async (id) => {
 
     return response.data;
 };
+
+export const restockCar = async (id, quantity) => {
+    const response = await api.patch(
+        `/cars/${id}/restock`,
+        { quantity },
+        authHeader()
+    );
+
+    return response.data;
+};
