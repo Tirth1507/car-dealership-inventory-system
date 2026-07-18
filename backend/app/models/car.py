@@ -20,10 +20,15 @@ class Car(Base):
 
     model = Column(String(100), nullable=False)
 
+    category = Column(
+        String(50),
+        nullable=False
+    )
+
     year = Column(Integer, nullable=False)
 
     price = Column(Float, nullable=False)
-
+    
     color = Column(String(50), nullable=False)
 
     fuel_type = Column(String(30), nullable=False)
