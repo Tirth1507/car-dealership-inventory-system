@@ -10,6 +10,7 @@ class CarCreate(BaseModel):
     fuel_type: str = Field(..., min_length=3, max_length=30)
     transmission: str = Field(..., min_length=3, max_length=30)
     mileage: int = Field(..., ge=0)
+    quantity: int = Field(..., ge=0)
 
 
 class CarUpdate(BaseModel):
@@ -22,6 +23,7 @@ class CarUpdate(BaseModel):
     transmission: str | None = Field(None, min_length=3, max_length=30)
     mileage: int | None = Field(None, ge=0)
     status: str | None = None
+    quantity: int | None = Field(None, ge=0)
 
 
 class CarResponse(BaseModel):
@@ -35,6 +37,7 @@ class CarResponse(BaseModel):
     transmission: str
     mileage: int
     status: str
+    quantity: int
     image_url: str | None = None
 
     model_config = ConfigDict(from_attributes=True)

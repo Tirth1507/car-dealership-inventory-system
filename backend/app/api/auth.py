@@ -16,6 +16,36 @@ router = APIRouter(
 )
 
 
+# ==========================
+# Register
+# ==========================
+@router.post(
+    "/register",
+    response_model=UserResponse,
+    status_code=status.HTTP_201_CREATED
+)
+def register(
+    user_data: UserRegister,
+    db: Session = Depends(get_db)
+):
+    try:
+
+        return AuthService.register_user(
+            db,
+            user_data
+        )
+
+    except ValueError as e:
+
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
+        )
+
+
+# ==========================
+# Login
+# ==========================
 @router.post(
     "/login",
     response_model=LoginResponse
@@ -25,8 +55,14 @@ def login(
     db: Session = Depends(get_db)
 ):
     try:
-        return AuthService.login_user(db, login_data)
+
+        return AuthService.login_user(
+            db,
+            login_data
+        )
+
     except ValueError as e:
+
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=str(e)

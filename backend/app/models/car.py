@@ -32,6 +32,12 @@ class Car(Base):
 
     mileage = Column(Integer, nullable=False)
 
+    quantity = Column(
+    Integer,
+    nullable=False,
+    default=1
+    )
+
     status = Column(
         String(20),
         nullable=False,

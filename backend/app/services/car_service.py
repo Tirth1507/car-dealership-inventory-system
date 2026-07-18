@@ -10,6 +10,12 @@ class CarService:
     @staticmethod
     def create_car(db: Session, car_data: CarCreate):
 
+        status = (
+            "Available"
+            if car_data.quantity > 0
+            else "Out of Stock"
+        )
+
         car = Car(
             make=car_data.make,
             model=car_data.model,
@@ -19,6 +25,8 @@ class CarService:
             fuel_type=car_data.fuel_type,
             transmission=car_data.transmission,
             mileage=car_data.mileage,
+            quantity=car_data.quantity,
+            status=status,
         )
 
         return CarRepository.create_car(db, car)
@@ -53,6 +61,14 @@ class CarService:
 
         for key, value in update_data.items():
             setattr(car, key, value)
+
+        # Automatically update status when quantity changes
+        if "quantity" in update_data:
+            car.status = (
+                "Available"
+                if car.quantity > 0
+                else "Out of Stock"
+            )
 
         return CarRepository.update_car(db, car)
 
