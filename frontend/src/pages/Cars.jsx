@@ -118,18 +118,18 @@ function Cars() {
                     <thead>
 
                         <tr>
-                            <th></th>
-                            <th>Make</th>
-                            <th>Model</th>
-                            <th>Year</th>
-                            <th>Price</th>
-                            <th>Fuel</th>
-                            <th>Transmission</th>
-                            <th>Quantity</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-
+                        <th></th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Category</th>
+                        <th>Year</th>
+                        <th>Price</th>
+                        <th>Fuel</th>
+                        <th>Transmission</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
                     </thead>
 
                     <tbody>
@@ -138,7 +138,7 @@ function Cars() {
 
                             <tr>
                                 <td
-                                    colSpan="10"
+                                    colSpan="11"
                                     className="empty-state"
                                 >
                                     Loading cars...
@@ -149,7 +149,7 @@ function Cars() {
 
                             <tr>
                                 <td
-                                    colSpan="10"
+                                    colSpan="11"
                                     className="empty-state"
                                 >
                                     No cars found.
@@ -171,6 +171,8 @@ function Cars() {
                                     </td>
 
                                     <td>{car.model}</td>
+
+                                    <td>{car.category}</td>
 
                                     <td>{car.year}</td>
 

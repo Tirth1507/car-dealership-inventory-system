@@ -195,3 +195,15 @@
     color: #A0A0A8;
     cursor: not-allowed;
 }
+
+.category-badge {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 6px 12px;
+    background: #eef4ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}

@@ -28,6 +28,10 @@ function CarCard({ car, onPurchase }) {
             <h2>
                 {car.make} {car.model}
             </h2>
+            
+            <div className="category-badge">
+                🚘 {car.category}
+            </div>
 
             <p className="car-price">
                 ₹{Number(car.price).toLocaleString("en-IN")}

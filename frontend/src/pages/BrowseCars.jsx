@@ -14,6 +14,7 @@ function BrowseCars() {
 
     const [search, setSearch] = useState("");
     const [fuelFilter, setFuelFilter] = useState("All");
+    const [categoryFilter, setCategoryFilter] = useState("All");
     const [transmissionFilter, setTransmissionFilter] = useState("All");
 
     useEffect(() => {
@@ -58,13 +59,24 @@ const handlePurchase = async (carId) => {
                 .toLowerCase()
                 .includes(search.toLowerCase());
 
+       const matchesCategory =
+            categoryFilter === "All" ||
+            car.category === categoryFilter;
+
         const matchesFuel =
-            fuelFilter === "All" || car.fuel_type === fuelFilter;
+            fuelFilter === "All" ||
+            car.fuel_type === fuelFilter;
 
         const matchesTransmission =
-            transmissionFilter === "All" || car.transmission === transmissionFilter;
+            transmissionFilter === "All" ||
+            car.transmission === transmissionFilter;
 
-        return matchesSearch && matchesFuel && matchesTransmission;
+        return (
+            matchesSearch &&
+            matchesCategory &&
+            matchesFuel &&
+            matchesTransmission
+        );
     });
 
     if (loading) {
@@ -101,6 +113,23 @@ const handlePurchase = async (carId) => {
                     <option value="All">All Fuel Types</option>
                     <option value="Petrol">Petrol</option>
                     <option value="Diesel">Diesel</option>
+                    <option value="Electric">Electric</option>
+                    <option value="Hybrid">Hybrid</option>
+                </select>
+
+                <select
+                    className="filter-select"
+                    value={categoryFilter}
+                    onChange={(e) => setCategoryFilter(e.target.value)}
+                >
+                    <option value="All">All Categories</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Sedan">Sedan</option>
+                    <option value="Hatchback">Hatchback</option>
+                    <option value="Coupe">Coupe</option>
+                    <option value="Convertible">Convertible</option>
+                    <option value="Pickup">Pickup</option>
+                    <option value="Luxury">Luxury</option>
                     <option value="Electric">Electric</option>
                     <option value="Hybrid">Hybrid</option>
                 </select>
