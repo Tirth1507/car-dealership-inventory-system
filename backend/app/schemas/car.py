@@ -4,6 +4,7 @@ from pydantic import BaseModel, ConfigDict, Field
 class CarCreate(BaseModel):
     make: str = Field(..., min_length=2, max_length=100)
     model: str = Field(..., min_length=1, max_length=100)
+    category: str = Field(..., min_length=3, max_length=50)
     year: int = Field(..., ge=1900, le=2100)
     price: float = Field(..., gt=0)
     color: str = Field(..., min_length=2, max_length=50)
@@ -16,6 +17,7 @@ class CarCreate(BaseModel):
 class CarUpdate(BaseModel):
     make: str | None = Field(None, min_length=2, max_length=100)
     model: str | None = Field(None, min_length=1, max_length=100)
+    category: str | None = Field(None, min_length=3, max_length=50)
     year: int | None = Field(None, ge=1900, le=2100)
     price: float | None = Field(None, gt=0)
     color: str | None = Field(None, min_length=2, max_length=50)
@@ -30,6 +32,7 @@ class CarResponse(BaseModel):
     id: int
     make: str
     model: str
+    category: str
     year: int
     price: float
     color: str
@@ -41,3 +44,4 @@ class CarResponse(BaseModel):
     image_url: str | None = None
 
     model_config = ConfigDict(from_attributes=True)
+

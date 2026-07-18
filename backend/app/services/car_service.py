@@ -19,6 +19,7 @@ class CarService:
         car = Car(
             make=car_data.make,
             model=car_data.model,
+            category=car_data.category,
             year=car_data.year,
             price=car_data.price,
             color=car_data.color,
@@ -28,7 +29,6 @@ class CarService:
             quantity=car_data.quantity,
             status=status,
         )
-
         return CarRepository.create_car(db, car)
 
     @staticmethod
