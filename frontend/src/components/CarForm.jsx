@@ -37,6 +37,58 @@ function CarForm({
                 </div>
 
                 <div className="form-group">
+                    <label>Category</label>
+
+                    <select
+                        name="category"
+                        value={formData.category}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="SUV">
+                            SUV
+                        </option>
+
+                        <option value="Sedan">
+                            Sedan
+                        </option>
+
+                        <option value="Hatchback">
+                            Hatchback
+                        </option>
+
+                        <option value="Coupe">
+                            Coupe
+                        </option>
+
+                        <option value="Convertible">
+                            Convertible
+                        </option>
+
+                        <option value="Pickup">
+                            Pickup
+                        </option>
+
+                        <option value="Luxury">
+                            Luxury
+                        </option>
+
+                        <option value="Electric">
+                            Electric
+                        </option>
+
+                        <option value="Hybrid">
+                            Hybrid
+                        </option>
+
+                    </select>
+                </div>
+
+                <div className="form-group">
                     <label>Year</label>
                     <input
                         type="number"

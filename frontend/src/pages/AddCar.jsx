@@ -14,6 +14,7 @@ function AddCar() {
     const [formData, setFormData] = useState({
         make: "",
         model: "",
+        category: "",
         year: "",
         price: "",
         color: "",
