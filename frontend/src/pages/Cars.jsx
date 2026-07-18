@@ -5,6 +5,7 @@ import "../styles/Cars.css";
 import {
     getAllCars,
     deleteCar,
+    restockCar,
 } from "../services/carService";
 
 function Cars() {
@@ -54,6 +55,8 @@ function Cars() {
 
             await deleteCar(id);
 
+            alert("Car deleted successfully!");
+
             fetchCars();
 
         } catch (error) {
@@ -61,6 +64,45 @@ function Cars() {
             console.error(error);
 
             alert("Failed to delete car.");
+
+        }
+
+    };
+
+    const handleRestock = async (id) => {
+
+        const quantity = prompt("Enter quantity to add:");
+
+        if (
+            quantity === null ||
+            quantity.trim() === ""
+        ) {
+            return;
+        }
+
+        const qty = Number(quantity);
+
+        if (!Number.isInteger(qty) || qty <= 0) {
+            alert("Please enter a valid positive number.");
+            return;
+        }
+
+        try {
+
+            await restockCar(id, qty);
+
+            alert("Car restocked successfully!");
+
+            fetchCars();
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                error.response?.data?.detail ||
+                "Failed to restock car."
+            );
 
         }
 
@@ -118,18 +160,19 @@ function Cars() {
                     <thead>
 
                         <tr>
-                        <th></th>
-                        <th>Make</th>
-                        <th>Model</th>
-                        <th>Category</th>
-                        <th>Year</th>
-                        <th>Price</th>
-                        <th>Fuel</th>
-                        <th>Transmission</th>
-                        <th>Quantity</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
+                            <th></th>
+                            <th>Make</th>
+                            <th>Model</th>
+                            <th>Category</th>
+                            <th>Year</th>
+                            <th>Price</th>
+                            <th>Fuel</th>
+                            <th>Transmission</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+
                     </thead>
 
                     <tbody>
@@ -178,9 +221,9 @@ function Cars() {
 
                                     <td className="cell-strong">
                                         ₹
-                                        {Number(
-                                            car.price
-                                        ).toLocaleString("en-IN")}
+                                        {Number(car.price).toLocaleString(
+                                            "en-IN"
+                                        )}
                                     </td>
 
                                     <td>{car.fuel_type}</td>
@@ -217,6 +260,15 @@ function Cars() {
                                                 }
                                             >
                                                 Edit
+                                            </button>
+
+                                            <button
+                                                className="restock-btn"
+                                                onClick={() =>
+                                                    handleRestock(car.id)
+                                                }
+                                            >
+                                                Restock
                                             </button>
 
                                             <button
