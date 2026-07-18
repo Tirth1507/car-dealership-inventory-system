@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 
-import { getAllCars } from "../services/carService";
+import {
+    getAllCars,
+    purchaseCar
+} from "../services/carService";
 import CarCard from "../components/CarCard";
 
 import "../styles/BrowseCars.css";
@@ -14,19 +17,40 @@ function BrowseCars() {
     const [transmissionFilter, setTransmissionFilter] = useState("All");
 
     useEffect(() => {
-        fetchCars();
-    }, []);
+    fetchCars();
+}, []);
 
-    const fetchCars = async () => {
-        try {
-            const data = await getAllCars();
-            setCars(data);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    };
+const fetchCars = async () => {
+    try {
+        const data = await getAllCars();
+        setCars(data);
+    } catch (error) {
+        console.error(error);
+    } finally {
+        setLoading(false);
+    }
+};
+
+const handlePurchase = async (carId) => {
+
+    try {
+
+        await purchaseCar(carId);
+
+        alert("Car purchased successfully!");
+
+        fetchCars();
+
+    } catch (error) {
+
+        alert(
+            error.response?.data?.detail ||
+            "Purchase failed."
+        );
+
+    }
+
+};
 
     const filteredCars = cars.filter((car) => {
         const matchesSearch =
@@ -99,7 +123,11 @@ function BrowseCars() {
             ) : (
                 <div className="car-grid">
                     {filteredCars.map((car) => (
-                        <CarCard key={car.id} car={car} />
+                       <CarCard
+                        key={car.id}
+                        car={car}
+                        onPurchase={handlePurchase}
+                    />
                     ))}
                 </div>
             )}

@@ -45,3 +45,13 @@ export const deleteCar = async (id) => {
 
     return response.data;
 };
+
+export const purchaseCar = async (id) => {
+    const response = await api.post(
+        `/cars/${id}/purchase`,
+        {},
+        authHeader()
+    );
+
+    return response.data;
+};

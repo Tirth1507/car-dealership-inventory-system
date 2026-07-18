@@ -1,6 +1,6 @@
 import "../styles/BrowseCars.css";
 
-function CarCard({ car }) {
+function CarCard({ car, onPurchase }) {
 
     return (
 
@@ -74,6 +74,7 @@ function CarCard({ car }) {
             <button
                 className="purchase-btn"
                 disabled={car.quantity === 0}
+                onClick={() => onPurchase(car.id)}
             >
                 {
                     car.quantity === 0
