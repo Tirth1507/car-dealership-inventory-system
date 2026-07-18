@@ -1,0 +1,197 @@
+.browse-container {
+    padding: 40px;
+    background: #E6E6FA;
+    min-height: 100vh;
+}
+
+.browse-header {
+    margin-bottom: 28px;
+}
+
+.browse-title {
+    color: #4B006E;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.browse-subtitle {
+    color: #666666;
+    font-size: 15px;
+}
+
+.browse-loading {
+    text-align: center;
+    color: #666666;
+    font-size: 15px;
+    padding: 60px 0;
+}
+
+.filter-section {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 30px;
+    background: #FFFFFF;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(75, 0, 110, 0.08);
+    flex-wrap: wrap;
+}
+
+.filter-search {
+    flex: 2;
+    min-width: 220px;
+    padding: 11px 14px;
+    border: 1px solid #D8D8E0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333333;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.filter-search::placeholder {
+    color: #A0A0A8;
+}
+
+.filter-search:focus {
+    border-color: #4B006E;
+    box-shadow: 0 0 0 3px rgba(75, 0, 110, 0.08);
+}
+
+.filter-select {
+    flex: 1;
+    min-width: 160px;
+    padding: 11px 14px;
+    border: 1px solid #D8D8E0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333333;
+    background: #FFFFFF;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.filter-select:focus {
+    border-color: #4B006E;
+    box-shadow: 0 0 0 3px rgba(75, 0, 110, 0.08);
+}
+
+.browse-empty {
+    text-align: center;
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 60px;
+    color: #999999;
+    box-shadow: 0 2px 10px rgba(75, 0, 110, 0.08);
+}
+
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+}
+
+.car-card {
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 2px 10px rgba(75, 0, 110, 0.08);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(75, 0, 110, 0.14);
+}
+
+.car-image {
+    margin-bottom: 16px;
+}
+
+.car-image img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.car-placeholder {
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    background: #F5F0FA;
+    border-radius: 8px;
+}
+
+.car-card h2 {
+    text-align: center;
+    color: #333333;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.car-price {
+    text-align: center;
+    color: #4B006E;
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.car-details p {
+    margin: 8px 0;
+    color: #666666;
+    font-size: 13.5px;
+}
+
+.car-details strong {
+    color: #333333;
+}
+
+.status {
+    display: inline-block;
+    margin: 14px 0;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.available {
+    background: #E8F5E9;
+    color: #2E7D32;
+}
+
+.out {
+    background: #FDECEA;
+    color: #C62828;
+}
+
+.purchase-btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #4B006E;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.purchase-btn:hover:not(:disabled) {
+    background: #FF8700;
+}
+
+.purchase-btn:disabled {
+    background: #E0DDE6;
+    color: #A0A0A8;
+    cursor: not-allowed;
+}

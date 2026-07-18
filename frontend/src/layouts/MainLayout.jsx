@@ -1,12 +1,27 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
+
+import { useAuth } from "../context/AuthContext";
+
+import AdminNavbar from "../components/AdminNavbar";
+import CustomerNavbar from "../components/CustomerNavbar";
 
 function MainLayout() {
+
+    const { user } = useAuth();
+
     return (
+
         <>
-            <Navbar />
+
+            {user?.role === "admin"
+                ? <AdminNavbar />
+                : <CustomerNavbar />
+            }
+
             <Outlet />
+
         </>
+
     );
 }
 

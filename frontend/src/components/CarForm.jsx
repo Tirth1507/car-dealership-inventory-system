@@ -114,6 +114,20 @@ function CarForm({
                     />
                 </div>
 
+                {/* New Quantity Field */}
+                <div className="form-group">
+                    <label>Quantity</label>
+                    <input
+                        type="number"
+                        name="quantity"
+                        placeholder="Enter available quantity"
+                        value={formData.quantity}
+                        onChange={handleChange}
+                        min="0"
+                        required
+                    />
+                </div>
+
                 <button type="submit" className="save-btn">
                     {buttonText}
                 </button>

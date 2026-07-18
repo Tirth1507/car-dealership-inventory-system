@@ -26,9 +26,19 @@ function Login() {
         try {
             const response = await loginUser(formData);
 
-            login(response.access_token);
+            login(
+                response.access_token,
+                response.user
+            );
 
-            navigate("/dashboard");
+            if (response.user.role === "admin") {
+                        navigate("/dashboard");
+
+                    } else {
+
+                        navigate("/customer-dashboard");
+
+                    }
         } catch (err) {
             setError(
                 err.response?.data?.detail || "Login failed"

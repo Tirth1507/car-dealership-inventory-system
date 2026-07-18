@@ -121,3 +121,20 @@
 .register-link a:hover {
     color: #FF8700;
 }
+
+.form-row-inline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-error {
+    background: #FDECEA;
+    color: #C62828;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    text-align: center;
+}

@@ -7,6 +7,8 @@ import Cars from "../pages/Cars";
 import AddCar from "../pages/AddCar";
 import EditCar from "../pages/EditCar";
 import NotFound from "../pages/NotFound";
+import CustomerDashboard from "../pages/CustomerDashboard";
+import BrowseCars from "../pages/BrowseCars";
 
 import MainLayout from "../layouts/MainLayout";
 
@@ -24,6 +26,16 @@ function AppRoutes() {
                 <Route element={<MainLayout />}>
 
                     <Route path="/dashboard" element={<Dashboard />} />
+
+                    <Route
+                        path="/browse-cars"
+                        element={<BrowseCars />}
+                    />
+
+                    <Route
+                        path="/customer-dashboard"
+                        element={<CustomerDashboard />}
+                    />
 
                     <Route path="/cars" element={<Cars />} />
 

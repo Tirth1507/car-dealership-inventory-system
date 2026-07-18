@@ -67,3 +67,105 @@
     background: #FF8700;
     border-color: #FF8700;
 }
+
+.navbar{
+
+    height:70px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 45px;
+
+    background:#5b0b78;
+
+    color:white;
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+}
+
+.logo span{
+
+    font-size:18px;
+
+}
+
+.nav-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:30px;
+
+}
+
+.nav-right a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:17px;
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+.nav-right a:hover{
+
+    color:#ff8700;
+
+}
+
+.user-name{
+
+    font-weight:bold;
+
+    font-size:17px;
+
+}
+
+.logout-btn{
+
+    background:transparent;
+
+    border:1px solid white;
+
+    color:white;
+
+    padding:10px 22px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:#ff8700;
+
+    border-color:#ff8700;
+
+}

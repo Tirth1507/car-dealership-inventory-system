@@ -6,6 +6,7 @@ import CarForm from "../components/CarForm";
 import { getCarById, updateCar } from "../services/carService";
 
 function EditCar() {
+
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -18,6 +19,7 @@ function EditCar() {
         fuel_type: "",
         transmission: "",
         mileage: "",
+        quantity: "",
     });
 
     const [loading, setLoading] = useState(true);
@@ -29,7 +31,9 @@ function EditCar() {
     }, []);
 
     const fetchCar = async () => {
+
         try {
+
             setLoading(true);
             setError(null);
 
@@ -44,29 +48,39 @@ function EditCar() {
                 fuel_type: car.fuel_type,
                 transmission: car.transmission,
                 mileage: car.mileage,
+                quantity: car.quantity,
             });
 
         } catch (error) {
+
             console.error(error);
             setError("Unable to load car details.");
+
         } finally {
+
             setLoading(false);
+
         }
+
     };
 
     const handleChange = (e) => {
+
         const { name, value } = e.target;
 
         setFormData((prev) => ({
             ...prev,
             [name]: value,
         }));
+
     };
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
         try {
+
             setSubmitting(true);
 
             await updateCar(id, {
@@ -74,22 +88,32 @@ function EditCar() {
                 year: Number(formData.year),
                 price: Number(formData.price),
                 mileage: Number(formData.mileage),
+                quantity: Number(formData.quantity),
             });
+
+            alert("Car updated successfully!");
 
             navigate("/cars");
 
         } catch (error) {
+
             console.error(error);
             alert("Failed to update car.");
+
         } finally {
+
             setSubmitting(false);
+
         }
+
     };
 
     if (loading) {
         return (
             <div className="add-car-page">
-                <div className="form-state-message">Loading car details...</div>
+                <div className="form-state-message">
+                    Loading car details...
+                </div>
             </div>
         );
     }
@@ -99,7 +123,10 @@ function EditCar() {
             <div className="add-car-page">
                 <div className="form-state-message form-state-error">
                     {error}
-                    <button className="retry-btn" onClick={fetchCar}>
+                    <button
+                        className="retry-btn"
+                        onClick={fetchCar}
+                    >
                         Retry
                     </button>
                 </div>
@@ -109,6 +136,7 @@ function EditCar() {
 
     return (
         <div className="add-car-page">
+
             <div className="add-car-header">
                 <h1>Edit Car</h1>
                 <p>Update the vehicle details below</p>
@@ -118,11 +146,17 @@ function EditCar() {
                 formData={formData}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
-                buttonText={submitting ? "Updating..." : "Update Car"}
+                buttonText={
+                    submitting
+                        ? "Updating..."
+                        : "Update Car"
+                }
                 onCancel={() => navigate("/cars")}
             />
+
         </div>
     );
+
 }
 
 export default EditCar;
