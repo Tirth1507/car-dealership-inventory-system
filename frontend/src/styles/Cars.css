@@ -170,3 +170,50 @@
 .restock-btn:hover {
     background-color: #15803d;
 }
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.restock-modal{
+    width:380px;
+    background:#fff;
+    border-radius:12px;
+    padding:30px;
+    box-shadow:0 20px 40px rgba(0,0,0,.2);
+}
+
+.restock-modal h2{
+    margin-bottom:10px;
+}
+
+.restock-modal input{
+    width:100%;
+    padding:12px;
+    margin:18px 0;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+}
+
+.cancel-btn{
+    background:#e5e7eb;
+    color:#111827;
+}
+
+.confirm-btn{
+    background:#16a34a;
+    color:white;
+}

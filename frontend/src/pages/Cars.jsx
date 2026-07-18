@@ -15,6 +15,10 @@ function Cars() {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const [showRestockModal, setShowRestockModal] = useState(false);
+    const [selectedCarId, setSelectedCarId] = useState(null);
+    const [restockQuantity, setRestockQuantity] = useState("");
+
     useEffect(() => {
         fetchCars();
     }, []);
@@ -71,7 +75,7 @@ function Cars() {
 
     const handleRestock = async (id) => {
 
-        const quantity = prompt("Enter quantity to add:");
+        
 
         if (
             quantity === null ||
@@ -126,6 +130,36 @@ function Cars() {
         return "status-available";
 
     };
+
+    const submitRestock = async () => {
+
+    const qty = Number(restockQuantity);
+
+    if (!Number.isInteger(qty) || qty <= 0) {
+        alert("Please enter a valid quantity.");
+        return;
+    }
+
+    try {
+
+        await restockCar(selectedCarId, qty);
+
+        alert("Inventory updated successfully!");
+
+        setShowRestockModal(false);
+
+        fetchCars();
+
+    } catch (error) {
+
+        alert(
+            error.response?.data?.detail ||
+            "Failed to restock."
+        );
+
+    }
+
+};
 
     return (
 
@@ -264,9 +298,11 @@ function Cars() {
 
                                             <button
                                                 className="restock-btn"
-                                                onClick={() =>
-                                                    handleRestock(car.id)
-                                                }
+                                                onClick={() => {
+                                                    setSelectedCarId(car.id);
+                                                    setRestockQuantity("");
+                                                    setShowRestockModal(true);
+                                                }}
                                             >
                                                 Restock
                                             </button>
@@ -295,6 +331,46 @@ function Cars() {
                 </table>
 
             </div>
+            {showRestockModal && (
+
+<div className="modal-overlay">
+
+    <div className="restock-modal">
+
+        <h2>Restock Inventory</h2>
+
+        <p>Enter quantity to add</p>
+
+        <input
+            type="number"
+            value={restockQuantity}
+            onChange={(e)=>setRestockQuantity(e.target.value)}
+            min="1"
+        />
+
+        <div className="modal-buttons">
+
+            <button
+                className="cancel-btn"
+                onClick={()=>setShowRestockModal(false)}
+            >
+                Cancel
+            </button>
+
+            <button
+                className="confirm-btn"
+                onClick={submitRestock}
+            >
+                Restock
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+)}
 
         </div>
 
