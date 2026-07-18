@@ -1,6 +1,7 @@
 import os
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from database import Base, engine
@@ -19,6 +20,19 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title="Car Dealership Inventory System API",
     version="1.0.0"
+)
+
+# -----------------------------
+# CORS Configuration
+# -----------------------------
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Create uploads folder automatically if it doesn't exist
