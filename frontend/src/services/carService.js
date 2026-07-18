@@ -12,10 +12,34 @@ export const getAllCars = async () => {
     return response.data;
 };
 
+export const getCarById = async (id) => {
+    const response = await api.get(`/cars/${id}`, authHeader());
+    return response.data;
+};
+
 export const createCar = async (carData) => {
     const response = await api.post(
         "/cars",
         carData,
+        authHeader()
+    );
+
+    return response.data;
+};
+
+export const updateCar = async (id, carData) => {
+    const response = await api.put(
+        `/cars/${id}`,
+        carData,
+        authHeader()
+    );
+
+    return response.data;
+};
+
+export const deleteCar = async (id) => {
+    const response = await api.delete(
+        `/cars/${id}`,
         authHeader()
     );
 

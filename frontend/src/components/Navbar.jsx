@@ -30,12 +30,12 @@ function Navbar() {
                 >
                     Cars
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                     to="/cars/add"
                     className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
                 >
                     Add Car
-                </NavLink>
+                </NavLink> */}
 
                 <button onClick={handleLogout} className="logout-btn">
                     Logout
