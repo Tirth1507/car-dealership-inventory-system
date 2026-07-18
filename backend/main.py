@@ -1,4 +1,7 @@
+import os
+
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
 from database import Base, engine
 
@@ -8,13 +11,27 @@ from app.models.car import Car
 from app.api.auth import router as auth_router
 from app.api.car import router as car_router
 
+
+# Create all database tables
 Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI(
     title="Car Dealership Inventory System API",
     version="1.0.0"
 )
 
+# Create uploads folder automatically if it doesn't exist
+os.makedirs("uploads", exist_ok=True)
+
+# Serve uploaded images
+app.mount(
+    "/uploads",
+    StaticFiles(directory="uploads"),
+    name="uploads"
+)
+
+# Register API routes
 app.include_router(auth_router)
 app.include_router(car_router)
 

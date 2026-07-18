@@ -17,6 +17,7 @@ class Car(Base):
     id = Column(Integer, primary_key=True, index=True)
 
     make = Column(String(100), nullable=False)
+
     model = Column(String(100), nullable=False)
 
     year = Column(Integer, nullable=False)
@@ -35,6 +36,11 @@ class Car(Base):
         String(20),
         nullable=False,
         default="Available"
+    )
+
+    image_url = Column(
+        String(255),
+        nullable=True
     )
 
     created_at = Column(

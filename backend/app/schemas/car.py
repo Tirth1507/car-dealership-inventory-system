@@ -35,5 +35,6 @@ class CarResponse(BaseModel):
     transmission: str
     mileage: int
     status: str
+    image_url: str | None = None
 
     model_config = ConfigDict(from_attributes=True)
