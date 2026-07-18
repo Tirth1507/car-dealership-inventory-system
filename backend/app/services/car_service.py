@@ -73,6 +73,31 @@ class CarService:
         return CarRepository.update_car(db, car)
 
     @staticmethod
+    def purchase_car(
+        db: Session,
+        car_id: int
+    ):
+
+        car = CarRepository.get_car_by_id(db, car_id)
+
+        if not car:
+            raise ValueError("Car not found")
+
+        if car.quantity <= 0:
+            raise ValueError("Car is out of stock")
+
+        # Reduce stock
+        car.quantity -= 1
+
+        # Update status automatically
+        if car.quantity == 0:
+            car.status = "Out of Stock"
+        else:
+            car.status = "Available"
+
+        return CarRepository.update_car(db, car)
+
+    @staticmethod
     def delete_car(
         db: Session,
         car_id: int

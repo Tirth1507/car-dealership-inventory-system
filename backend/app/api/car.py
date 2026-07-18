@@ -84,6 +84,25 @@ def update_car(
             detail=str(e)
         )
 
+@router.post(
+    "/{car_id}/purchase",
+    response_model=CarResponse
+)
+def purchase_car(
+    car_id: int,
+    db: Session = Depends(get_db)
+):
+    try:
+        return CarService.purchase_car(
+            db,
+            car_id
+        )
+
+    except ValueError as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
+        )
 
 @router.delete("/{car_id}")
 def delete_car(
