@@ -13,6 +13,8 @@ class CarCreate(BaseModel):
     mileage: int = Field(..., ge=0)
     quantity: int = Field(..., ge=0)
 
+    model_config = ConfigDict(from_attributes=True)
+
 
 class CarUpdate(BaseModel):
     make: str | None = Field(None, min_length=2, max_length=100)
@@ -26,6 +28,8 @@ class CarUpdate(BaseModel):
     mileage: int | None = Field(None, ge=0)
     status: str | None = None
     quantity: int | None = Field(None, ge=0)
+
+    model_config = ConfigDict(from_attributes=True)
 
 
 class CarResponse(BaseModel):
@@ -42,6 +46,8 @@ class CarResponse(BaseModel):
     status: str
     quantity: int
     image_url: str | None = None
+
+    model_config = ConfigDict(from_attributes=True)
 
 class RestockRequest(BaseModel):
     quantity: int = Field(..., gt=0)

@@ -1,10 +1,17 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException,
+    status,
+    UploadFile,
+    File,
+    Form,
+)
 from sqlalchemy.orm import Session
 
 from database import get_db
 from app.dependencies.auth import get_current_admin
 from app.schemas.car import (
-    CarCreate,
     CarUpdate,
     CarResponse,
     RestockRequest,
@@ -23,16 +30,42 @@ router = APIRouter(
     status_code=status.HTTP_201_CREATED
 )
 def create_car(
-    car_data: CarCreate,
+    make: str = Form(...),
+    model: str = Form(...),
+    category: str = Form(...),
+    year: int = Form(...),
+    price: float = Form(...),
+    color: str = Form(...),
+    fuel_type: str = Form(...),
+    transmission: str = Form(...),
+    mileage: int = Form(...),
+    quantity: int = Form(...),
+    image: UploadFile | None = File(None),
     db: Session = Depends(get_db),
-    current_user=Depends(get_current_admin)
+    current_user=Depends(get_current_admin),
 ):
     try:
-        return CarService.create_car(db, car_data)
+
+        return CarService.create_car(
+            db=db,
+            make=make,
+            model=model,
+            category=category,
+            year=year,
+            price=price,
+            color=color,
+            fuel_type=fuel_type,
+            transmission=transmission,
+            mileage=mileage,
+            quantity=quantity,
+            image=image,
+        )
+
     except ValueError as e:
+
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
+            detail=str(e),
         )
 
 # All Cars endpoint
@@ -69,21 +102,45 @@ def get_car_by_id(
 )
 def update_car(
     car_id: int,
-    car_data: CarUpdate,
+    make: str = Form(...),
+    model: str = Form(...),
+    category: str = Form(...),
+    year: int = Form(...),
+    price: float = Form(...),
+    color: str = Form(...),
+    fuel_type: str = Form(...),
+    transmission: str = Form(...),
+    mileage: int = Form(...),
+    quantity: int = Form(...),
+    image: UploadFile | None = File(None),
     db: Session = Depends(get_db),
-    current_user=Depends(get_current_admin)
+    current_user=Depends(get_current_admin),
 ):
     try:
+
         return CarService.update_car(
-            db,
-            car_id,
-            car_data
+            db=db,
+            car_id=car_id,
+            make=make,
+            model=model,
+            category=category,
+            year=year,
+            price=price,
+            color=color,
+            fuel_type=fuel_type,
+            transmission=transmission,
+            mileage=mileage,
+            quantity=quantity,
+            image=image,
         )
+
     except ValueError as e:
+
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=str(e)
+            detail=str(e),
         )
+        
 # Purchase car endpoint
 @router.post(
     "/{car_id}/purchase",

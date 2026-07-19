@@ -1,37 +1,72 @@
+import os
+import uuid
+
+from fastapi import UploadFile
 from sqlalchemy.orm import Session
 
 from app.models.car import Car
 from app.repositories.car_repository import CarRepository
-from app.schemas.car import (
-    CarCreate,
-    CarUpdate,
-    RestockRequest,
-)
+from app.schemas.car import RestockRequest
+
+UPLOAD_DIR = "uploads"
+
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 class CarService:
 
     @staticmethod
-    def create_car(db: Session, car_data: CarCreate):
+    def create_car(
+        db: Session,
+        make: str,
+        model: str,
+        category: str,
+        year: int,
+        price: float,
+        color: str,
+        fuel_type: str,
+        transmission: str,
+        mileage: int,
+        quantity: int,
+        image: UploadFile | None = None,
+    ):
+
+        filename = None
+
+        if image and image.filename:
+
+            extension = image.filename.split(".")[-1]
+
+            filename = f"{uuid.uuid4()}.{extension}"
+
+            filepath = os.path.join(
+                UPLOAD_DIR,
+                filename
+            )
+
+            with open(filepath, "wb") as buffer:
+                buffer.write(image.file.read())
 
         status = (
             "Available"
-            if car_data.quantity > 0
+            if quantity > 0
             else "Out of Stock"
         )
 
         car = Car(
-            make=car_data.make,
-            model=car_data.model,
-            category=car_data.category,
-            year=car_data.year,
-            price=car_data.price,
-            color=car_data.color,
-            fuel_type=car_data.fuel_type,
-            transmission=car_data.transmission,
-            mileage=car_data.mileage,
-            quantity=car_data.quantity,
+            make=make,
+            model=model,
+            category=category,
+            year=year,
+            price=price,
+            color=color,
+            fuel_type=fuel_type,
+            transmission=transmission,
+            mileage=mileage,
+            quantity=quantity,
             status=status,
+            image_url=filename,
         )
+
         return CarRepository.create_car(db, car)
 
     @staticmethod
@@ -52,7 +87,17 @@ class CarService:
     def update_car(
         db: Session,
         car_id: int,
-        car_data: CarUpdate
+        make: str,
+        model: str,
+        category: str,
+        year: int,
+        price: float,
+        color: str,
+        fuel_type: str,
+        transmission: str,
+        mileage: int,
+        quantity: int,
+        image: UploadFile | None = None,
     ):
 
         car = CarRepository.get_car_by_id(db, car_id)
@@ -60,18 +105,49 @@ class CarService:
         if not car:
             raise ValueError("Car not found")
 
-        update_data = car_data.model_dump(exclude_unset=True)
+        car.make = make
+        car.model = model
+        car.category = category
+        car.year = year
+        car.price = price
+        car.color = color
+        car.fuel_type = fuel_type
+        car.transmission = transmission
+        car.mileage = mileage
+        car.quantity = quantity
 
-        for key, value in update_data.items():
-            setattr(car, key, value)
+        car.status = (
+            "Available"
+            if quantity > 0
+            else "Out of Stock"
+        )
 
-        # Automatically update status when quantity changes
-        if "quantity" in update_data:
-            car.status = (
-                "Available"
-                if car.quantity > 0
-                else "Out of Stock"
+        if image and image.filename:
+
+            # Delete previous image (optional but recommended)
+            if car.image_url:
+
+                old_path = os.path.join(
+                    UPLOAD_DIR,
+                    car.image_url
+                )
+
+                if os.path.exists(old_path):
+                    os.remove(old_path)
+
+            extension = image.filename.split(".")[-1]
+
+            filename = f"{uuid.uuid4()}.{extension}"
+
+            filepath = os.path.join(
+                UPLOAD_DIR,
+                filename
             )
+
+            with open(filepath, "wb") as buffer:
+                buffer.write(image.file.read())
+
+            car.image_url = filename
 
         return CarRepository.update_car(db, car)
 
