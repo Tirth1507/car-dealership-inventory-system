@@ -14,7 +14,11 @@ class CarRepository:
 
     @staticmethod
     def get_all_cars(db: Session):
-        return db.query(Car).all()
+        return (
+            db.query(Car)
+            .order_by(Car.created_at.desc())
+            .all()
+        )
 
     @staticmethod
     def get_car_by_id(db: Session, car_id: int):
