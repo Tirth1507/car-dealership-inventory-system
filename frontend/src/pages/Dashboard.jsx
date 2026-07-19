@@ -94,13 +94,13 @@ function Dashboard() {
                     </div>
                 </div>
 
-                <div className="card card-orange" style={{ animationDelay: "160ms" }}>
+                {/* <div className="card card-orange" style={{ animationDelay: "160ms" }}>
                     <div className="card-icon">🏷️</div>
                     <div>
                         <h3>Sold Cars</h3>
                         <h2>{stats.soldCars}</h2>
                     </div>
-                </div>
+                </div> */}
 
                 <div className="card card-purple" style={{ animationDelay: "240ms" }}>
                     <div className="card-icon">💰</div>

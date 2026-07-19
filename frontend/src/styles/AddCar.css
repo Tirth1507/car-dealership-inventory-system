@@ -152,3 +152,16 @@
 .retry-btn:hover {
     background: #FF8700;
 }
+
+.image-preview{
+    margin-top:20px;
+    text-align:center;
+}
+
+.preview-image{
+    width:250px;
+    height:170px;
+    object-fit:cover;
+    border-radius:10px;
+    border:2px solid #ddd;
+}

@@ -240,7 +240,26 @@ function Cars() {
                                 <tr key={car.id}>
 
                                     <td className="car-icon-cell">
-                                        🚗
+
+                                        {car.image_url ? (
+
+                                            <img
+                                                src={`http://localhost:8000/uploads/${car.image_url}`}
+                                                alt={`${car.make} ${car.model}`}
+                                                className="car-table-image"
+                                                onError={(e) => {
+                                                    e.target.style.display = "none";
+                                                }}
+                                            />
+
+                                        ) : (
+
+                                            <div className="no-image">
+                                                No Image
+                                            </div>
+
+                                        )}
+
                                     </td>
 
                                     <td className="cell-strong">

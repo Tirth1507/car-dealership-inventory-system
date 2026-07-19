@@ -17,21 +17,31 @@ export const getCarById = async (id) => {
     return response.data;
 };
 
-export const createCar = async (carData) => {
+export const createCar = async (formData) => {
     const response = await api.post(
         "/cars",
-        carData,
-        authHeader()
+        formData,
+        {
+            headers: {
+                Authorization: `Bearer ${getToken()}`,
+                "Content-Type": "multipart/form-data",
+            },
+        }
     );
 
     return response.data;
 };
 
-export const updateCar = async (id, carData) => {
+export const updateCar = async (id, formData) => {
     const response = await api.put(
         `/cars/${id}`,
-        carData,
-        authHeader()
+        formData,
+        {
+            headers: {
+                Authorization: `Bearer ${getToken()}`,
+                "Content-Type": "multipart/form-data",
+            },
+        }
     );
 
     return response.data;

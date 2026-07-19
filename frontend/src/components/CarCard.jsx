@@ -11,9 +11,12 @@ function CarCard({ car, onPurchase }) {
                 {car.image_url ? (
 
                     <img
-                        src={car.image_url}
-                        alt={`${car.make} ${car.model}`}
-                    />
+                    src={`http://127.0.0.1:8000/uploads/${car.image_url}`}
+                    alt={`${car.make} ${car.model}`}
+                    onError={(e) => {
+                        e.target.src = "/car-placeholder.png";
+                    }}
+                />
 
                 ) : (
 
@@ -28,7 +31,7 @@ function CarCard({ car, onPurchase }) {
             <h2>
                 {car.make} {car.model}
             </h2>
-            
+
             <div className="category-badge">
                 🚘 {car.category}
             </div>

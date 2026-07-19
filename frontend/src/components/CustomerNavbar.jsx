@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Navbar.css";
 
@@ -22,13 +22,19 @@ function CustomerNavbar() {
 
             <div className="nav-right">
 
-                <Link to="/customer-dashboard">
+                <NavLink
+                    to="/customer-dashboard"
+                    className={({ isActive }) => isActive ? "active" : ""}
+                >
                     Home
-                </Link>
+                </NavLink>
 
-                <Link to="/browse-cars">
+                <NavLink
+                    to="/browse-cars"
+                    className={({ isActive }) => isActive ? "active" : ""}
+                >
                     Browse Cars
-                </Link>
+                </NavLink>
 
                 <span className="user-name">
                     👤 {user?.first_name}

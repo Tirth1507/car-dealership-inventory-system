@@ -74,3 +74,44 @@
     background: #FF8700;
     border-color: #FF8700;
 }
+
+/* ===========================
+   Customer Navbar
+=========================== */
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.nav-right a{
+    text-decoration:none;
+    color:#E6E6FA;
+    font-size:15px;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.nav-right a:hover{
+    background:rgba(255,255,255,.12);
+    color:#fff;
+}
+
+.nav-right a.active{
+    background:#FF8700;
+    color:#fff;
+}
+
+.user-name{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#FFFFFF;
+    font-weight:600;
+    padding:8px 14px;
+    background:rgba(255,255,255,.12);
+    border-radius:25px;
+}

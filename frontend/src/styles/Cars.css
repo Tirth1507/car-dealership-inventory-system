@@ -217,3 +217,28 @@
     background:#16a34a;
     color:white;
 }
+
+.car-table-image{
+    width:90px;
+    height:60px;
+    object-fit:cover;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+.no-image{
+    width:90px;
+    height:60px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#f5f5f5;
+
+    color:#888;
+
+    border-radius:8px;
+
+    font-size:12px;
+}

@@ -3,14 +3,16 @@ import "../styles/AddCar.css";
 function CarForm({
     formData,
     handleChange,
+    handleImageChange,
     handleSubmit,
     buttonText,
+    previewImage,
 }) {
     return (
         <div className="add-car-container">
             <h1>{buttonText}</h1>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
 
                 <div className="form-group">
                     <label>Make</label>
@@ -45,46 +47,16 @@ function CarForm({
                         onChange={handleChange}
                         required
                     >
-                        <option value="">
-                            Select Category
-                        </option>
-
-                        <option value="SUV">
-                            SUV
-                        </option>
-
-                        <option value="Sedan">
-                            Sedan
-                        </option>
-
-                        <option value="Hatchback">
-                            Hatchback
-                        </option>
-
-                        <option value="Coupe">
-                            Coupe
-                        </option>
-
-                        <option value="Convertible">
-                            Convertible
-                        </option>
-
-                        <option value="Pickup">
-                            Pickup
-                        </option>
-
-                        <option value="Luxury">
-                            Luxury
-                        </option>
-
-                        <option value="Electric">
-                            Electric
-                        </option>
-
-                        <option value="Hybrid">
-                            Hybrid
-                        </option>
-
+                        <option value="">Select Category</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="Hatchback">Hatchback</option>
+                        <option value="Coupe">Coupe</option>
+                        <option value="Convertible">Convertible</option>
+                        <option value="Pickup">Pickup</option>
+                        <option value="Luxury">Luxury</option>
+                        <option value="Electric">Electric</option>
+                        <option value="Hybrid">Hybrid</option>
                     </select>
                 </div>
 
@@ -126,6 +98,7 @@ function CarForm({
 
                 <div className="form-group">
                     <label>Fuel Type</label>
+
                     <select
                         name="fuel_type"
                         value={formData.fuel_type}
@@ -142,6 +115,7 @@ function CarForm({
 
                 <div className="form-group">
                     <label>Transmission</label>
+
                     <select
                         name="transmission"
                         value={formData.transmission}
@@ -156,6 +130,7 @@ function CarForm({
 
                 <div className="form-group">
                     <label>Mileage (km)</label>
+
                     <input
                         type="number"
                         name="mileage"
@@ -166,9 +141,9 @@ function CarForm({
                     />
                 </div>
 
-                {/* New Quantity Field */}
                 <div className="form-group">
                     <label>Quantity</label>
+
                     <input
                         type="number"
                         name="quantity"
@@ -180,7 +155,34 @@ function CarForm({
                     />
                 </div>
 
-                <button type="submit" className="save-btn">
+                {/* ---------- NEW IMAGE FIELD ---------- */}
+
+                <div className="form-group">
+                    <label>Car Image</label>
+
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                    />
+                </div>
+
+                {/* ---------- IMAGE PREVIEW ---------- */}
+
+                {previewImage && (
+                    <div className="image-preview">
+                        <img
+                            src={previewImage}
+                            alt="Preview"
+                            className="preview-image"
+                        />
+                    </div>
+                )}
+
+                <button
+                    type="submit"
+                    className="save-btn"
+                >
                     {buttonText}
                 </button>
 

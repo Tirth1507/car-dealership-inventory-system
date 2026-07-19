@@ -41,9 +41,11 @@ const handlePurchase = async (carId) => {
 
         await purchaseCar(carId);
 
-        alert("Car purchased successfully!");
-
         fetchCars();
+
+        alert(
+            "🎉 Congratulations!\n\nYour vehicle has been purchased successfully.\n\nThank you for choosing Car Dealership! 🚗"
+        );
 
     } catch (error) {
 

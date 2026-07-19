@@ -10,6 +10,8 @@ function EditCar() {
     const { id } = useParams();
     const navigate = useNavigate();
 
+    const [previewImage, setPreviewImage] = useState(null);
+
     const [formData, setFormData] = useState({
         make: "",
         model: "",
@@ -21,6 +23,7 @@ function EditCar() {
         transmission: "",
         mileage: "",
         quantity: "",
+        image: null,
     });
 
     const [loading, setLoading] = useState(true);
@@ -41,17 +44,24 @@ function EditCar() {
             const car = await getCarById(id);
 
             setFormData({
-            make: car.make,
-            model: car.model,
-            category: car.category,
-            year: car.year,
-            price: car.price,
-            color: car.color,
-            fuel_type: car.fuel_type,
-            transmission: car.transmission,
-            mileage: car.mileage,
-            quantity: car.quantity,
-        });
+                make: car.make,
+                model: car.model,
+                category: car.category,
+                year: car.year,
+                price: car.price,
+                color: car.color,
+                fuel_type: car.fuel_type,
+                transmission: car.transmission,
+                mileage: car.mileage,
+                quantity: car.quantity,
+                image: null,
+            });
+
+            if (car.image_url) {
+                setPreviewImage(
+                    `http://localhost:8000/uploads/${car.image_url}`
+                );
+            }
 
         } catch (error) {
 
@@ -77,6 +87,21 @@ function EditCar() {
 
     };
 
+    const handleImageChange = (e) => {
+
+        const file = e.target.files[0];
+
+        if (!file) return;
+
+        setFormData((prev) => ({
+            ...prev,
+            image: file,
+        }));
+
+        setPreviewImage(URL.createObjectURL(file));
+
+    };
+
     const handleSubmit = async (e) => {
 
         e.preventDefault();
@@ -85,13 +110,24 @@ function EditCar() {
 
             setSubmitting(true);
 
-            await updateCar(id, {
-                ...formData,
-                year: Number(formData.year),
-                price: Number(formData.price),
-                mileage: Number(formData.mileage),
-                quantity: Number(formData.quantity),
-            });
+            const data = new FormData();
+
+            data.append("make", formData.make);
+            data.append("model", formData.model);
+            data.append("category", formData.category);
+            data.append("year", Number(formData.year));
+            data.append("price", Number(formData.price));
+            data.append("color", formData.color);
+            data.append("fuel_type", formData.fuel_type);
+            data.append("transmission", formData.transmission);
+            data.append("mileage", Number(formData.mileage));
+            data.append("quantity", Number(formData.quantity));
+
+            if (formData.image) {
+                data.append("image", formData.image);
+            }
+
+            await updateCar(id, data);
 
             alert("Car updated successfully!");
 
@@ -100,6 +136,7 @@ function EditCar() {
         } catch (error) {
 
             console.error(error);
+
             alert("Failed to update car.");
 
         } finally {
@@ -125,12 +162,14 @@ function EditCar() {
             <div className="add-car-page">
                 <div className="form-state-message form-state-error">
                     {error}
+
                     <button
                         className="retry-btn"
                         onClick={fetchCar}
                     >
                         Retry
                     </button>
+
                 </div>
             </div>
         );
@@ -140,20 +179,24 @@ function EditCar() {
         <div className="add-car-page">
 
             <div className="add-car-header">
+
                 <h1>Edit Car</h1>
+
                 <p>Update the vehicle details below</p>
+
             </div>
 
             <CarForm
                 formData={formData}
                 handleChange={handleChange}
+                handleImageChange={handleImageChange}
                 handleSubmit={handleSubmit}
+                previewImage={previewImage}
                 buttonText={
                     submitting
                         ? "Updating..."
                         : "Update Car"
                 }
-                onCancel={() => navigate("/cars")}
             />
 
         </div>
