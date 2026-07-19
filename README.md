@@ -1,85 +1,103 @@
 # 🚗 Car Dealership Inventory System
 
-A full-stack Car Dealership Inventory System developed as part of the Incubyte Software Craftsperson Internship Assessment.
+This project is a full-stack Car Dealership Inventory System developed as part of the **Incubyte Software Craftsperson Internship Assessment**.
 
-## 📖 Project Description
+The main goal of this project is to help a car dealership manage its vehicle inventory. It allows an admin to manage cars and customers to browse and purchase available vehicles.
 
-The Car Dealership Inventory System is a full-stack web application that helps dealerships manage vehicle inventory efficiently.
+---
 
-The system supports two types of users:
+# 📖 Project Overview
 
-- **Admin** – Can manage the inventory by adding, updating, deleting, and restocking vehicles.
-- **Customer** – Can browse available vehicles, search using filters, and purchase vehicles.
+The application has two different user roles:
 
-The project follows RESTful API architecture using FastAPI for the backend and React for the frontend, with PostgreSQL as the database.
+### Admin
+- Login securely
+- Add new cars
+- Update car details
+- Delete cars
+- Restock inventory
+- View inventory dashboard
 
-## ✨ Features
+### Customer
+- Register and Login
+- Browse available cars
+- Search and filter cars
+- Purchase available cars
 
-### 🔐 Authentication
+The backend is built using **FastAPI** and the frontend is developed using **React**. PostgreSQL is used to store all application data.
+
+---
+
+# ✨ Features
+
+### Authentication
 - User Registration
 - User Login
 - JWT Authentication
-- Role-Based Authorization (Admin & Customer)
+- Admin and Customer roles
 
-### 🚘 Vehicle Management
-- Add Vehicle
-- Update Vehicle
-- Delete Vehicle
-- Purchase Vehicle
-- Restock Vehicle
-- Upload Vehicle Images
+### Car Management
+- Add Car
+- Edit Car
+- Delete Car
+- Purchase Car
+- Restock Car
+- Upload Car Images
 
-### 📊 Dashboard
+### Dashboard
 - Admin Dashboard
 - Customer Dashboard
 - Inventory Statistics
 - Charts using Recharts
 
-### 🔍 Search & Filtering
-- Search by Make and Model
+### Search & Filters
+- Search by Make or Model
 - Filter by Category
 - Filter by Fuel Type
 - Filter by Transmission
 - Filter by Price Range
 
-### 🎨 User Interface
+### User Interface
 - Responsive Design
-- Modern Dashboard
-- Customer-Friendly Interface
+- Clean Dashboard
+- Simple Navigation
 
-## 🛠️ Tech Stack
+---
 
-### Frontend
+# 🛠️ Technologies Used
+
+## Frontend
 - React.js
 - Vite
 - JavaScript
-- CSS3
+- CSS
 - Axios
 - React Router DOM
 - Recharts
 
-### Backend
+## Backend
 - Python
 - FastAPI
 - SQLAlchemy
-- JWT Authentication
 - Pydantic
+- JWT Authentication
 
-### Database
+## Database
 - PostgreSQL
 
-### Testing
+## Testing
 - Pytest
-- SQLite (Testing Database)
 
-### Version Control
+## Version Control
 - Git
 - GitHub
 
-## 📂 Project Structure
+---
+
+# 📂 Project Structure
 
 ```
-Car-Dealership-Inventory-System
+car-dealership-inventory-system
 │
 ├── backend
 │   ├── app
@@ -92,13 +110,17 @@ Car-Dealership-Inventory-System
 │   ├── public
 │   └── package.json
 │
+├── screenshots
 ├── README.md
-└── PROMPTS.md
+├── PROMPTS.md
+└── LICENSE
 ```
 
-## ⚙️ Installation & Setup
+---
 
-### Clone the Repository
+# ⚙️ How to Run the Project
+
+## Clone Repository
 
 ```bash
 git clone https://github.com/Tirth1507/car-dealership-inventory-system.git
@@ -106,7 +128,7 @@ git clone https://github.com/Tirth1507/car-dealership-inventory-system.git
 cd car-dealership-inventory-system
 ```
 
-### Backend Setup
+## Backend Setup
 
 ```bash
 cd backend
@@ -120,13 +142,15 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Backend URL:
+Backend will run on
 
 ```
 http://127.0.0.1:8000
 ```
 
-### Frontend Setup
+---
+
+## Frontend Setup
 
 ```bash
 cd frontend
@@ -136,21 +160,22 @@ npm install
 npm run dev
 ```
 
-Frontend URL:
+Frontend will run on
 
 ```
 http://localhost:5173
 ```
 
+---
 
-## 🌐 API Endpoints
+# 🌐 API Endpoints
 
 ### Authentication
 
 - POST `/auth/register`
 - POST `/auth/login`
 
-### Vehicles
+### Cars
 
 - GET `/cars`
 - GET `/cars/{id}`
@@ -163,80 +188,101 @@ http://localhost:5173
 - POST `/cars/{id}/purchase`
 - PATCH `/cars/{id}/restock`
 
+---
 
-## 🧪 Running Tests
+# 🧪 Running Tests
 
-Run all backend tests:
+To run the backend tests:
 
 ```bash
 pytest
 ```
 
-Run tests with coverage:
+To run tests with coverage:
 
 ```bash
 pytest --cov=app --cov-report=term-missing
 ```
 
-The project includes tests for:
+Current test results:
 
-- Authentication
-- Vehicle CRUD Operations
-- Purchase
-- Restock
+- Total Tests: 7
+- Passed: 7
+- Failed: 0
 
-## 📸 Application Screenshots
-- Take A Look In Screenshots Folder.
+A screenshot of the test execution is available in the **screenshots** folder.
 
-## 🤖 My AI Usage
+---
+
+# 📸 Screenshots
+
+Screenshots of the application are available inside the **screenshots** folder.
+
+They include:
+
+- Login Page
+- Register Page
+- Admin Dashboard
+- Customer Dashboard
+- Browse Cars
+- Car Management
+- Test Report
+
+---
+
+# 🤖 My AI Usage
 
 ### AI Tools Used
 
-- ChatGPT (OpenAI)
-- Claude (Anthropic)
+- ChatGPT
+- Claude
 
 ### How I Used AI
 
-I used AI as a development assistant throughout this project.
+I used AI as a learning and development assistant while building this project.
 
-**ChatGPT** helped me with:
+ChatGPT helped me with:
 
-- Designing the overall project architecture
-- Building the FastAPI backend
-- Implementing JWT authentication and role-based authorization
-- Developing React components and application logic
-- Debugging frontend and backend issues
-- Creating SQLAlchemy database models
-- Writing unit tests using Pytest
-- Improving code quality and project structure
-- Writing project documentation
+- Planning the project structure
+- Building backend APIs
+- JWT Authentication
+- Debugging errors
+- Writing React components
+- Writing tests
+- Improving project documentation
 
-**Claude** was primarily used for:
-
-- Improving the user interface design
-- Refining layouts and component styling
-- Suggesting responsive UI improvements
-- Enhancing the overall user experience
+Claude helped me improve the user interface by suggesting layout changes, styling improvements, and a cleaner design.
 
 ### Reflection
 
-AI tools significantly improved my development workflow by helping me understand concepts, explore implementation approaches, debug issues, and refine the user interface. All AI-generated suggestions were carefully reviewed, tested, and adapted before being incorporated into the final project.
+AI helped me understand new concepts, debug problems faster, and improve the overall quality of the project. I reviewed, tested, and modified the generated suggestions before adding them to the project.
 
+---
 
-## 🌱 Future Improvements
+# 🌱 Future Improvements
 
-- Vehicle Wishlist
-- Online Payment Integration
+Some features I would like to add in the future:
+
+- Wishlist
+- Online Payment
 - Email Notifications
 - Sales Reports
 - Vehicle Reviews
 - Cloud Image Storage
 
+---
 
-## 👨‍💻 Author
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Author
 
 **Tirth Shah**
 
 Master of Computer Science (AI & ML)
 
-GitHub: https://github.com/Tirth1507
+GitHub:
+https://github.com/Tirth1507
