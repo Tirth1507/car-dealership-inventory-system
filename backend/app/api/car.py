@@ -140,7 +140,7 @@ def update_car(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=str(e),
         )
-        
+
 # Purchase car endpoint
 @router.post(
     "/{car_id}/purchase",
