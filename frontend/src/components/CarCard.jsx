@@ -11,7 +11,7 @@ function CarCard({ car, onPurchase }) {
                 {car.image_url ? (
 
                     <img
-                    src={`http://127.0.0.1:8000/uploads/${car.image_url}`}
+                    src={`https://car-dealership-backend-akz1.onrender.com/uploads/${car.image_url}`}
                     alt={`${car.make} ${car.model}`}
                     onError={(e) => {
                         e.target.src = "/car-placeholder.png";
