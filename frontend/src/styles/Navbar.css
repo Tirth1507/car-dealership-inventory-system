@@ -1,13 +1,14 @@
 .navbar {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     background: #4B006E;
-    padding: 14px 40px;
-    box-shadow: 0 2px 8px rgba(75, 0, 110, 0.15);
+    padding: 14px 30px;
+    box-shadow: 0 2px 8px rgba(75,0,110,.15);
     position: sticky;
     top: 0;
     z-index: 100;
+    gap: 20px;
 }
 
 .logo {
@@ -82,7 +83,8 @@
 .nav-right{
     display:flex;
     align-items:center;
-    gap:18px;
+    gap:15px;
+    flex-wrap:wrap;
 }
 
 .nav-right a{
@@ -114,4 +116,50 @@
     padding:8px 14px;
     background:rgba(255,255,255,.12);
     border-radius:25px;
+}
+
+/* ===========================
+   Mobile Responsive Navbar
+=========================== */
+
+@media (max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        align-items:center;
+        padding:15px;
+    }
+
+    .logo{
+        font-size:24px;
+        justify-content:center;
+        text-align:center;
+    }
+
+    .nav-right{
+        width:100%;
+        justify-content:center;
+        flex-wrap:wrap;
+        gap:12px;
+    }
+
+    .nav-right a,
+    .logout-btn{
+        width:45%;
+        text-align:center;
+    }
+
+    .user-name{
+        width:100%;
+        justify-content:center;
+    }
+
+}
+
+@media (max-width:768px){
+
+.logo{
+    flex-direction:column;
+    gap:2px;
+}
 }
