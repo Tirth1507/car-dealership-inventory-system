@@ -186,34 +186,7 @@ The project includes tests for:
 - Restock
 
 ## 📸 Application Screenshots
-
-### Login Page
-
-![Login](screenshots/login.png)
-
-### Registration Page
-
-![Register](screenshots/register.png)
-
-### Admin Dashboard
-
-![Admin Dashboard](screenshots/admin-dashboard.png)
-
-### Customer Dashboard
-
-![Customer Dashboard](screenshots/customer-dashboard.png)
-
-### Browse Cars
-
-![Browse Cars](screenshots/browse-cars.png)
-
-### Add Vehicle
-
-![Add Vehicle](screenshots/add-car.png)
-
-### Vehicle Management
-
-![Cars](screenshots/cars.png)
+- Take A Look In Screenshots Folder.
 
 ## 🤖 My AI Usage
 
