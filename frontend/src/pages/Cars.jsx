@@ -252,7 +252,7 @@ function Cars() {
                                         {car.image_url ? (
 
                                             <img
-                                                src={`http://localhost:8000/uploads/${car.image_url}`}
+                                                src={`https://car-dealership-backend-akz1.onrender.com/uploads/${car.image_url}`}
                                                 alt={`${car.make} ${car.model}`}
                                                 className="car-table-image"
                                                 onError={(e) => {

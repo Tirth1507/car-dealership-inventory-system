@@ -59,7 +59,7 @@ function EditCar() {
 
             if (car.image_url) {
                 setPreviewImage(
-                    `http://localhost:8000/uploads/${car.image_url}`
+                    `https://car-dealership-backend-akz1.onrender.com/uploads/${car.image_url}`
                 );
             }
 
