@@ -177,7 +177,7 @@ function CustomerDashboard() {
 
             </div>
 
-            <div className="offer-card">
+            {/* <div className="offer-card">
 
                 <div>
 
@@ -198,7 +198,7 @@ function CustomerDashboard() {
                     Explore Cars
                 </button>
 
-            </div>
+            </div> */}
 
             <div className="category-section">
 

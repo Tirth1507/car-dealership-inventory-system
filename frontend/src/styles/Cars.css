@@ -242,3 +242,26 @@
 
     font-size:12px;
 }
+
+.header-buttons{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.back-btn{
+    background:#fff;
+    color:#4B006E;
+    border:2px solid #4B006E;
+    padding:11px 20px;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.back-btn:hover{
+    background:#4B006E;
+    color:#fff;
+}

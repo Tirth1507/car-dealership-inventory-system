@@ -167,25 +167,33 @@ function Cars() {
 
             <div className="cars-header">
 
-                <div>
-                    <h1>Cars</h1>
-                    <p>
-                        {cars.length}{" "}
-                        {cars.length === 1
-                            ? "vehicle"
-                            : "vehicles"}{" "}
-                        in inventory
-                    </p>
-                </div>
+    <div>
+        <h1>Cars</h1>
+        <p>
+            {cars.length}{" "}
+            {cars.length === 1 ? "vehicle" : "vehicles"} in inventory
+        </p>
+    </div>
 
-                <button
-                    className="add-car-btn"
-                    onClick={() => navigate("/cars/add")}
-                >
-                    + Add Car
-                </button>
+        <div className="header-buttons">
 
-            </div>
+            <button
+                className="back-btn"
+                onClick={() => navigate("/dashboard")}
+            >
+                ← Dashboard
+            </button>
+
+            <button
+                className="add-car-btn"
+                onClick={() => navigate("/cars/add")}
+            >
+                + Add Car
+            </button>
+
+        </div>
+
+</div>
 
             <div className="table-wrapper">
 

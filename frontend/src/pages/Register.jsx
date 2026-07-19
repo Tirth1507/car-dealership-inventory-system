@@ -100,7 +100,7 @@ function Register() {
                             <input
                                 type="text"
                                 name="first_name"
-                                placeholder="John"
+                                placeholder="FIRST NAME"
                                 value={formData.first_name}
                                 onChange={handleChange}
                                 required
@@ -115,7 +115,7 @@ function Register() {
                             <input
                                 type="text"
                                 name="last_name"
-                                placeholder="Doe"
+                                placeholder="LAST NAME"
                                 value={formData.last_name}
                                 onChange={handleChange}
                                 required
